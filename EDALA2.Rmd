@@ -1,0 +1,304 @@
+---
+title: "Customer Segmentation"
+author: "Sneha S"
+date: "2023-05-18"
+output: word_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+d<-read.csv("C:/Users/sneha/OneDrive/Documents/mallcus.csv")
+```
+
+# 1.Scatterplot with regression line
+plot(d$CustomerID, d$Age, main = "Scatterplot with Regression Line", xlab = "X", ylab = "Y"): This line creates a scatterplot using the CustomerID column from the dataset d as the x-axis variable and the Age column as the y-axis variable. The main, xlab, and ylab parameters are used to set the title of the plot and labels for the x and y axes, respectively.
+
+abline(lm(Age ~ CustomerID, data = d), col = "red"): This line adds a regression line to the scatterplot. The lm() function fits a linear regression model with Age as the response variable and CustomerID as the predictor variable. The data parameter specifies the dataset d. The abline() function then plots the regression line on the scatterplot, with the col parameter setting the color of the line to red.
+
+```{r}
+plot(d$CustomerID, d$Age, main = "Scatterplot with Regression Line", xlab = "X", ylab = "Y")
+abline(lm(Age ~ CustomerID, dat = d), col = "red")
+
+```
+
+# 2.Step Plot: 
+ggplot(d, aes(x = Annual.Income..k.., y = Gender)): This
+sets up the base ggplot object with the dataset d and specifies the
+aesthetics for the plot. The x-axis variable is set as
+Annual.Income..k.., and the y-axis variable is set as Gender.
+
+geom_step(color = "blue"): This layer adds a step plot to the plot. The
+geom_step function creates a plot where the values are connected by
+steps instead of lines. The color argument sets the color of the steps
+to "blue".
+
+```{r}
+library(ggplot2)
+ggplot(d, aes( x =Age,y = CustomerID)) +
+geom_step(color = "blue")
+
+```
+
+# 3 .Ribbon Plot: 
+ggplot(d, aes(x = CustomerID)): 
+This sets up the base
+ggplot object with the dataset d and specifies the x-axis variable as
+CustomerID.
+
+geom_ribbon(aes(ymin = 0, ymax = 87), fill = "blue", alpha = 0.4): This
+layer adds a ribbon to the plot using geom_ribbon. The aes function
+inside geom_ribbon is used to set the aesthetics for the ribbon. In this
+case, the ymin is set to 0 and the ymax is set to 87, defining the range
+of the ribbon on the y-axis. The fill argument sets the fill color of
+the ribbon to "blue", and the alpha argument sets the transparency level
+of the fill to 0.4.
+
+```{r}
+
+ggplot(d, aes(x = CustomerID)) +
+  geom_ribbon(aes(ymin = 0, ymax = 87), fill = "blue", alpha = 0.4)
+
+```
+
+# 4.Line plot with multiple lines and grouped error bars
+
+sets up the plot with CustomerID on the x-axis, Age on the y-axis, and grouping and coloring based on the Gender variable. The geom_line() function adds lines to the plot, while geom_errorbar() adds error bars with a fixed range of 0 to 50. The labs() function sets the title and axis labels for the plot.
+
+```{r}
+library(ggplot2)
+
+# Create the line plot with error bars
+ggplot(data = d, aes(x =CustomerID , y = Age, group = Gender, color = Gender)) +
+  geom_line() +
+  geom_errorbar(aes(ymin = 0, ymax = 50), width = 0.2) +
+  labs(title = "Line Plot with Grouped Error Bars", x = "Gender", y = "Age")
+
+
+```
+
+# 5. Density Plot by Group: 
+creates a density plot where the x-axis
+represents the variable Age, and the fill color of the density curves
+distinguishes different categories of the Gender variable. The alpha =
+0.5 argument sets the transparency level of the density curves to 0.5.
+
+```{r}
+ggplot(d, aes(x = Age, fill = Gender)) +
+  geom_density(alpha = 0.5)
+
+
+```
+
+# 6 Stacked Histogram: 
+creates a stacked histogram where the x-axis
+represents the variable Age. The fill color of the histogram bars
+differentiates the categories in the Gender variable. The position =
+"stack" argument stacks the bars on top of each other, and the binwidth
+= 1 argument sets the width of the histogram bins to 1. The color =
+"black" argument sets the color of the histogram bars to black.
+
+```{r}
+ggplot(d, aes(x = Age, fill = Gender)) +
+geom_histogram(position = "stack", binwidth = 1,color="black") 
+```
+
+# 7 .Empirical Cumulative Distribution Plot:
+
+```{r}
+library(ggplot2)
+ggplot(d, aes(x =Age))+
+  stat_ecdf(geom = "step", color = "blue")
+```
+
+# 8 Bubble Chart with Regression Line  
+creates an empirical cumulative
+distribution function (ECDF) plot. The x-axis represents the variable
+Age. The stat_ecdf function calculates the empirical cumulative
+distribution values, and the geom = "step" argument specifies that the
+plot should be shown as a step function. The color = "blue" argument
+sets the color of the step function to blue.
+
+```{r}
+ggplot(d, aes(x = Gender, y = Age)) +
+  geom_point(shape = 11, fill = "blue", color = "black") +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+# 9 Scatter Plot with Smoothed Lines and Confidence Bands: 
+This code
+combines the scatter plot with a smoothed line fit and data points to
+visualize the relationship between Gender and CustomerID.
+
+```{r}
+ggplot(d, aes(x = Gender, y =CustomerID)) +
+  geom_smooth(method = "loess", se = TRUE) +
+  geom_point()
+```
+
+# 10 Scatter Plot with Jittered Points: 
+The x-axis represents the
+variable Gender, and the y-axis represents the variable Age. The
+geom_jitter function adds jittered points to the plot. Jittering is a
+technique used to add a small amount of random noise to the position of
+the points along the x-axis and y-axis. This helps to prevent
+overlapping points and provides a clearer view of the data. The width =
+0.2 and height = 0.2 arguments control the amount of jitter applied to
+the points in the x-axis and y-axis directions, respectively. This code
+is used to visually explore the relationship between Gender and Age by
+creating a scatter plot with jittered points, allowing for a better
+understanding of the distribution and patterns in the data.
+
+```{r}
+
+ggplot(d, aes(x = Gender, y = Age)) +
+  geom_jitter(width = 0.2, height = 0.2)
+```
+
+# 11 Bubble Chart with Regression Line 
+This code combines points, a
+linear regression line, and specific styling choices to visualize the
+relationship between Gender and Age, allowing for the examination of any
+potential linear trends in the data.
+
+```{r}
+
+ggplot(d, aes(x =Gender, y = Age)) +
+  geom_point(shape = 17, fill = "blue", color = "black") +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+# 12.Area Plot
+This code creates an area plot using the "CustomerID" variable as the x-axis, "Age" as the y-axis, and blue color with 50% transparency.
+```{r}
+library(ggplot2)
+
+# Create the area plot
+ggplot(dat = d) +
+  geom_area(aes(x = CustomerID, y = Age), fill = "blue", alpha = 0.5) +
+  labs(title = "Area Plot", x = "CustomerID", y = "Age")
+
+```
+
+# 13 Box Plot: 
+This code creates a boxplot where the x-axis represents
+the variable Gender, and the y-axis represents the variable CustomerID.
+The geom_boxplot function adds the boxplot layer to the plot. The fill =
+"blue" argument sets the fill color of the boxplot to blue.
+
+```{r}
+library(ggplot2)
+ ggplot(d, aes(x = Gender, y = CustomerID)) +
+ geom_boxplot(fill = "blue")
+
+```
+
+# 14 Violin Plot: 
+This code creates a violin plot where the x-axis
+represents the variable Gender, and the y-axis represents the variable
+CustomerID. The geom_violin function adds the violin plot layer to the
+plot. The fill = "blue" argument sets the fill color of the violin to
+blue.
+
+```{r}
+library(ggplot2)
+ ggplot(d, aes(x = Gender, y = CustomerID)) +
+ geom_violin(fill = "blue")
+
+
+```
+
+#15 Density Plot: 
+This code creates a density plot where the x-axis
+represents the variable Age. The geom_density function adds the density
+plot layer to the plot. The fill = "blue" argument sets the fill color
+of the density curve to blue. The alpha = 0.5 argument sets the
+transparency level of the fill color, making it partially transparent.
+
+```{r}
+ggplot(d, aes(x = Age)) +
+  geom_density(fill = "blue", alpha = 0.5)
+
+```
+
+#16 Histogram with Density Curve: This code creates a histogram where
+the x-axis represents the variable Age. The geom_histogram function adds
+the histogram layer to the plot. The aes(y = ..density..) argument
+ensures that the histogram is plotted on the density scale. The color =
+"black" and fill = "blue" arguments set the color of the histogram bars
+and fill, respectively. The bins = 30 argument specifies the number of
+bins for the histogram. The alpha = 0.5 argument sets the transparency
+level of the histogram fill.
+
+The geom_density function adds a density curve to the plot, providing a
+smoothed representation of the data. The alpha = 0.5 argument sets the
+transparency level of the density curve fill.
+
+```{r}
+ggplot(d, aes(x = Age)) +
+  geom_histogram(aes(y = ..density..), color = "black", fill = "blue", bins = 30, alpha = 0.5) +
+  geom_density(alpha = 0.5)
+
+```
+
+# 17 Violin Plot with Grouped Categories:
+
+This code creates a violin plot where the x-axis represents the variable
+CustomerID, the y-axis represents the variable Age, and the fill color
+of the violins is based on the CustomerID variable.
+
+The geom_violin function adds the violin plot layer to the plot. Violin
+plots display the distribution of the data through mirrored density
+curves on each side, providing a visual representation of the data's
+shape and distribution.
+
+By mapping CustomerID to the fill aesthetic, each violin will be filled
+with a unique color based on the distinct CustomerID values in the
+dataset.
+
+```{r}
+
+ggplot(d, aes(x = CustomerID, y = Age, fill = CustomerID )) +
+  geom_violin() 
+  
+
+ 
+```
+
+#18 Density Plot by Group: 
+This visualization allows us to examine the
+distribution of Annual.Income..k.. and how it varies with different
+values of Age. The density curve provides an estimation of the data's
+underlying distribution, and the fill color distinguishes different age
+groups within the plot.
+
+```{r}
+library(ggplot2)
+ggplot(d, aes(x =CustomerID, fill = Age)) +
+geom_density(alpha = 0.2) 
+```
+
+#19.Stacked Histogram: 
+This visualization allows us to examine the
+distribution of Spending.Score..1.100. and how it varies with different
+age groups. The stacked histogram shows the distribution of the variable
+within each age group, allowing for easy comparison between the groups.
+
+```{r}
+ggplot(d, aes(x =Age, fill =CustomerID)) +
+  geom_histogram(position = "stack", bins = 30, color = "black") 
+
+```
+
+#20.Empirical Cumulative Distribution Plot: 
+This visualization allows
+you to analyze the cumulative distribution of the Spending.Score..1.100.
+variable. The step function represents the proportion of data points
+below a given value on the x-axis, providing insights into the overall
+distribution and skewness of the variable.
+
+```{r}
+ggplot(d, aes(x =Age )) +
+  stat_ecdf(geom = "step", color = "blue")
+```
