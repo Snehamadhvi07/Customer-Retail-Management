@@ -1,0 +1,981 @@
+---
+title: "EDA LA1"
+---
+
+#The following report demonstrates the use of various r-programming commands, on the Credit Card theft data-set.
+
+# 1. Help (Documentation)
+###Purpose of help() is to obtain documentation for a given R command
+
+```{r}
+ help(mean)
+```
+###The help command gives a brief description about the R commands
+
+
+#### 2. ?Function_Name (Documentation) -->
+###The install.packages() command allows us to download and install packages from CRAN-like repositories or from local files.
+```{r} 
+?install.packages()
+``` 
+
+#### 3. Help Search (Documentation) 
+###Allows us to seacrch help system for documentation matching a given character string in the (file) name, alias, title, concept or keyword entries (or any combination thereof), using either fuzzy matching or regular expression matching. Names and titles of the matched help entries are displayed nicely formatted.Vignette names, titles and keywords and demo names and titles may also be searched 
+```{r}
+help.search("install") 
+```
+
+#### 4.Directories where the packages
+###Used to load/attach and listing of packages
+```{r} 
+library(base)
+```
+#### 5. Installing a package
+```{r}
+#install.packages("ggplot2")
+```
+###the ggplot2 package is installed.
+
+
+#### 6. Opening dataset
+
+```{r}
+library(readxl)
+ dataset <- read_excel("C:/Users/sneha/OneDrive/Documents/creditcard.xlt")
+View(dataset)
+```
+
+###imports the dataset into the Rstudio
+
+#### 7. Viewing dataset
+
+```{r}
+ library(tableHTML)
+ tableHTML(head(data))
+```
+
+
+####creates an easily css-ible HTML tables that are compatible with R shiny. The exported HTML table will contain separate ids or classes for headers, columns, second headers (if any) and the table itself (in case you have multiple tables) in order to create a complex css file very easily. ids and classes are explained in detail in the details section.
+
+#### 8. Summary of data
+```{r}
+summary(dataset)
+```
+###Produces result summaries of various model fitting functions
+
+#### 9. Columns of data
+```{r}
+names(dataset)
+```
+###gives the names of the columns in the dataset
+
+#### 10. Last few rows of data
+```{r}
+tail(dataset)
+```
+###Displays the last few rows of dataset
+
+#### 11. View of data
+```{r}
+View(dataset)
+```
+###Displays the entire dataset
+
+#### 12. Dimensions of data
+```{r}
+dim(dataset)
+```
+Displays the set of the dimension of the dataset
+
+
+#### 13. Class of data
+```{r}
+class(dataset)
+```
+If data is a vector, the output might be numeric or character, depending on the type of the vector,here however data is a dataframe,indicating that data belongs to the data.frame class. 
+
+
+#### 14. Structure of data
+```{r}
+str(dataset)
+```
+The str() function provides information about the structure of the object, including its type, dimensions, and the first few elements if applicable. It gives you a compact overview of the object's composition, making it easier to understand its components and their types.
+
+#### 15. Histogram of Vectors:
+```{r}
+convert_data = dataset[["Time"]]
+hist(convert_data)
+```
+The time column of the dataset is extracted into convert_data and a histogram is created from the values in the convert_data variable, visualizing the distribution of the data.
+
+#### 16. Bar Plot of Vectors:
+
+```{r}
+barplot(convert_data)
+```
+barplot creates a bar plot with vertical or horizontal bars,here the conver_data is being visualised as a barplot
+#### 17. Box Plot of Vectors:
+
+```{r}
+boxplot(convert_data)
+```
+Produces a box-and-whisker plots of the convert_data
+
+#### 18. Plot of Vectors:
+
+```{r}
+t=dataset[["Time"]]
+am=dataset[["Amount"]]
+plot(t, am)
+```
+creates a scatterplot graph with time as t in x axis and amount as am in y axis
+
+#### 19. Plot of Vectors:
+
+```{r}
+t=dataset[["Time"]]
+am=dataset[["Amount"]]
+plot(t, am, type="l")
+```
+t and am are two vectors that contain the data to be plotted. The t vector is used for the x-axis, and the am vector is used for the y-axis,type="l" specifies that a line plot should be created ("l" is short for "line").In this code, R will generate a line plot with the t variable on the x-axis and the am variable on the y-axis, with a line connecting the plotted points.
+
+
+#### 20. Plot of Vectors:
+
+```{r}
+t=dataset[["Time"]]
+am=dataset[["Amount"]]
+plot(t, am, type="b")
+```
+t and am are two vectors of equal length that contain the data to be plotted. The t vector is used for the x-axis, and the am vector is used for the y-axis.type="b" specifies that a combination of points and lines should be used in the plot ("b" stands for "both"),in this code, R will generate a plot with points representing the data values from the t and am vectors, and lines connecting those points. The plot will have the t variable on the x-axis and the am variable on the y-axis.This type of plot is often used to visualize the relationship or trend between two variables, where the points represent individual data points and the lines help to show the overall pattern or connection between them.
+
+
+#### 21. Max Amount
+```{r}
+max(am)
+```
+The max() function in R is used to find the maximum value of a vector or a set of values. By calling max(am), we are finding the maximum value of the am vector.
+
+
+#### 22. Mean Amount
+```{r}
+mean(am)
+```
+The mean() function in R is used to calculate the arithmetic mean or average of a vector or a set of values. 
+By calling mean(am), we are calculating the mean of the am vector.The mean() function is commonly used to summarize and analyze data, providing a measure of the central tendency of a set of values.
+
+#### 23. Sort datasets based on Amount
+```{r}
+head(sort(am))
+```
+the head() function in combination with the sort() function. The sort() function in R is used to sort a vector in ascending order.In this code, sort(am) sorts the am vector in ascending order and assigns the sorted result to the sorted_am variable. Then, head(sorted(am)) displays the first few values of the sorted vector.
+
+The head() function is used to show the first few elements of an object. By default, it displays the first six elements. We can specify a different number of elements to display by providing an additional argument to head(), such as head(sorted_am, n) where n is the number of elements you want to display.
+
+This code will allow you to see the sorted values of the am vector starting from the smallest values.
+
+#### 24. Finding sum of Time before ellapsing
+```{r}
+sum(t)
+```
+This code will compute the sum of the values in the t vector.
+The sum() function is commonly used to calculate the total or cumulative sum of numerical values in R.
+
+#### 25. Time vs Amount line plot
+```{r}
+plot(t,am,type="l")
+```
+t and am are two vectors of equal length that contain the data to be plotted. The t vector is used for the x-axis, and the am vector is used for the y-axis.
+type = "l" specifies that a line plot should be created ("l" stands for "line").
+When you run this code, R will generate a line plot with the values from the t vector on the x-axis and the values from the am vector on the y-axis. The points will be connected by lines to show the trend or pattern between the values.
+
+#### 26. Point plot time vs amount
+```{r}
+plot(t,am,type="b")
+```
+t and am are two vectors of equal length that contain the data to be plotted. The t vector is used for the x-axis, and the am vector is used for the y-axis.
+type = "b" specifies that a combination of points and lines should be used in the plot.
+When we run this code, R will generate a plot where the points representing the values from the t and am vectors are connected by lines. This type of plot is useful for visualizing the relationship between two variables, where the lines help to show the overall trend or pattern, and the points represent individual data points.
+
+#### 27. Point plot time vs amount
+```{r}
+plot(t,am,type="p")
+```
+t and am are two vectors of equal length that contain the data to be plotted. The t vector is used for the x-axis, and the am vector is used for the y-axis.
+type = "p" specifies that a scatter plot with points should be created ("p" stands for "points").
+When we run this code, R will generate a scatter plot where individual points are plotted for each corresponding pair of values from the t and am vectors. This type of plot is useful for visualizing the relationship between two variables and identifying any patterns or trends in the data.
+
+
+#### 28. Feature1 vs Feature2 histogram like plot
+```{r}
+f1=dataset[["V1"]]
+f2=dataset[["V2"]]
+plot(f1,f2,type="h")
+```
+The code plot(f1, f2, type = "h") in R is used to create a horizontal bar plot, also known as a high-density plot. This type of plot represents the values of the f2 vector as horizontal bars at the corresponding positions on the f1 vector.
+f1 and f2 are two vectors of equal length that contain the data to be plotted. The f1 vector represents the positions on the x-axis, and the f2 vector represents the heights or values of the bars.
+type = "h" specifies that a horizontal bar plot should be created ("h" stands for "horizontal").
+When we run this code, R will generate a horizontal bar plot where bars are drawn at the positions specified by the values in the f1 vector, and the heights or values of the bars are determined by the corresponding values in the f2 vector. This type of plot is useful for comparing values across different categories or variables.
+
+#### 29. Feature1 vs Feature2
+```{r}
+plot(f1,f2,type="s")
+```
+The code plot(f1, f2, type = "s") in R is used to create a plot with connected line segments, commonly known as a step plot. This type of plot is created by joining the data points with line segments that are drawn in a stepwise manner.
+f1 and f2 are two vectors of equal length that contain the data to be plotted. The f1 vector represents the x-axis values, and the f2 vector represents the y-axis values.
+type = "s" specifies that a step plot should be created ("s" stands for "step").
+When you run this code, R will generate a step plot where line segments connect the data points defined by the values in the f1 and f2 vectors. The plot will show a stepwise pattern where the y-value remains constant until a new x-value is encountered.
+
+Step plots are often used to display data that changes over a discrete set of x-values, such as time-series data or data with unevenly spaced x-values.
+
+
+#### 30. hitogram of amount with mean ab line
+```{r}
+hist(am, col="lightblue")
+abline(v = mean(am), col="red")
+```
+When we run this code, R will generate a histogram of the am vector, representing the distribution of values. The bars in the histogram will be colored light blue.
+
+To add a vertical line at the mean of the am vector, we can use the abline() function with the argument v set to the mean value. The col argument is used to specify the color of the line.
+When we run this code, R will plot the histogram with light blue bars and add a vertical red line representing the mean value of the am vector.
+
+#### 31. amount vs time changes point plot with mean ab lines
+```{r}
+plot(am,t,type="p")
+abline(v = mean(am),
+col="red",h=mean(t))
+```
+When we run this code, R will generate a scatter plot where individual points are plotted for each corresponding pair of values from the am and t vectors.
+
+To add a vertical line at the mean of the am vector and a horizontal line at the mean of the t vector, you can use the abline() function with the v and h arguments set to the respective mean values. The col argument is used to specify the color of the lines.
+
+When we run this code, R will plot the scatter plot and add a vertical red line at the mean of am and a horizontal red line at the mean of t.
+
+#### 32. Feature 25 vs Feature 28 plot
+```{r}
+f25=dataset[["V25"]]
+f28=dataset[["V28"]]
+plot(f25,f28,type="b",pch = 19,
+     col = "red", xlab = "x", ylab = "y")
+```
+
+f25 and f28 are two vectors of equal length that contain the data to be plotted. The f25 vector represents the x-axis values, and the f28 vector represents the y-axis values.
+
+type = "b" specifies that a combination of points and lines should be used in the plot.
+pch = 19 sets the plotting symbol to a solid circle with a size of 19.
+
+col = "red" sets the color of the points and lines to red.
+
+xlab = "x" and ylab = "y" set the labels for the x-axis and y-axis, respectively.
+
+When we run this code, R will generate a plot where the points representing the values from the f25 and f28 vectors are connected by lines. The points will be solid circles with a size of 19, and the color of both the points and lines will be red. The x-axis will be labeled as "x", and the y-axis will be labeled as "y".
+
+This type of plot is useful for visualizing the relationship between two variables, where the lines help to show the overall trend or pattern, and the points represent individual data points.
+
+
+#### 33. Length of attribute,ie.,Feature 25
+```{r}
+length(f25)
+```
+To determine the length of the f25 vector in R, you can use the length() function. The length() function returns the number of elements in a vector.
+
+#### 34. Min of Time excluding zero
+```{r}
+min(t[t>0])
+```
+t[t > 0] creates a subset of the t vector by selecting only the elements that are greater than 0.
+min() function is used to find the minimum value among the selected elements.
+By running this code,the minimum value from the t vector that is greater than 0 will be displayed.
+#### 35. Standard deviation of amount
+```{r}
+sd(am)
+```
+The sd() function calculates the standard deviation of a numeric vector.
+standard deviation of the am vector will be displayed
+
+#### 34. Shows class of amount
+```{r}
+class(am)
+```
+The class() function returns the class or data type of an object,the class of the am vector, which could be "numeric", "integer", "character", or other class types will be displayed on the console
+
+#### 35. variance of time elapsed
+```{r}
+head(var(t))
+```
+The var() function calculates the variance of a numeric vector,the variance of the t vector will be displayed on the console
+
+
+#### 36. matrix of adr
+
+```{r}
+matrix <- matrix(am,nrow=11,ncol=24)
+head(View(matrix))
+```
+matrix is the name assigned to the newly created matrix object.
+am is the vector used to populate the matrix. The values from the am vector will be used to fill the matrix in column-major order.
+nrow = 11 specifies the number of rows in the matrix. In this case, the matrix will have 11867 rows.
+ncol = 24 specifies the number of columns in the matrix. The resulting matrix will have 24 columns.
+By running this code, a matrix is created with dimensions 11867 rows by 24 columns, and the values from the am vector are used to fill the matrix.
+view the resulting matrix in a spreadsheet-like format, the View() function is used.
+
+#### 37. dataframe creation
+```{r}
+df <- data.frame(col1=t,col2=f1,col3=f2,col4=am)
+head(df)
+```
+This creates a data frame named df with four columns: col1, col2, col3, and col4. The values in each column are assigned from the corresponding vectors t, f1, f2, and am.
+The head function displays the first six rows of the data frame df in the console.
+
+
+
+#### 38. changing col names
+
+```{r}
+colnames(df) <- c("t","f1","f2","am")
+head(df)
+```
+colnames() is a function used to get or set the column names of an object.
+df is the data frame to which the column names are being assigned.
+c("t", "f1", "f2", "am") is a vector containing the new column names in the specified order.
+By running this code, the column names of the data frame df are updated to "t", "f1", "f2", and "am".
+
+The head() function displays the first six rows of the updated data frame df with the new column names.
+
+
+#### 39. adding a new column to dataframe
+
+```{r}
+df$feature25 <- f25
+head(df)
+```
+df$feature25 specifies the new column "feature25" within the data frame df.
+<- is the assignment operator in R, used to assign values to a variable or column.
+f25 is the vector containing the values that will be assigned to the "feature25" column.
+By running this code, the "feature25" column is added to the data frame df, and its values are assigned from the f25 vector.
+The head() function displays the first six rows of the updated data frame df with the new "feature25" column.
+
+
+#### 40. rearranging columns
+
+```{r}
+head(df[c("t","f1","f2","feature25","am")])
+```
+df is the data frame from which columns are being selected.
+["t", "f1", "f2", "feature25", "am"] specifies the column names to be included in the subset. The selected columns will be arranged in the same order as specified.
+By running this code, a subset of the data frame df is created, containing only the columns "t", "f1", "f2", "feature25", and "am".
+The head() function displays the first six rows of the selected subset of the data frame df.
+
+#### 41. checking if factor
+
+```{r}
+head(print(is.factor(f2)))
+```
+To check if the f2 variable is of factor class in R, you can use the is.factor() function. The is.factor() function returns TRUE if the provided object is a factor, and FALSE otherwise.
+By running this code, it will print TRUE if f2 is a factor variable, and FALSE if it is not.
+
+
+#### 42. converting to factor
+
+```{r}
+factor_df <- factor(t)
+```
+the t vector is converted into a factor variable, and the resulting factor variable is assigned to factor_df.
+
+#### 43. printing levels
+
+```{r}
+head(levels(factor_df))
+```
+By running this code, it will return the levels of the factor_df factor variable.
+
+#### 44. installing dplyr
+
+```{r}
+library(dplyr)
+```
+By running library(dplyr), we are loading the dplyr package in R. The dplyr package is a popular package for data manipulation and transformation. It provides a set of functions that allow for easy and efficient data manipulation tasks.
+
+Once the dplyr package is loaded, we can use its functions, such as filter(), select(), mutate(), and summarize(), among others, to perform various data manipulation operations on our datasets.
+
+
+#### 45. Recoding Undefined in feature2 to NAN
+
+```{r}
+factor_fd1 <- recode(factor_df, "Undefined" = "NAN")
+head(levels(factor_fd1))
+
+```
+by running above code,the level "Undefined" in the factor_df factor variable will be recoded as "NAN" in the factor_fd1 variable. The head(levels(factor_fd1)) command will then display the updated levels of the factor_fd1 variable.
+
+
+#### 46. adding a new column after transforming based on previous column
+
+```{r}
+testdataframe <- data.frame(time_ellapsed=t)
+head(transform(testdataframe,Total_time=t*10))
+
+```
+To transform the testdataframe by multiplying the values in the time_ellapsed column by 10 and store the result in a new column named Total_time, we can use the transform() function.By running this code, the testdataframe data frame remains unchanged, and a new data frame is created by applying the transformation. The result is not assigned to any object, so the transformed data frame is not stored separately.
+
+To see the transformed data frame, you can either assign the result to a new object or directly print it using print() or head() functions,here we will print the original testdataframe data frame and the transformed transformed_df data frame separately.
+
+#### 47. using aggregrate sum
+
+```{r}
+head(aggregate(df$t, list(df$am), FUN=sum))
+
+```
+aggregate() is a function in R used for data aggregation. It groups data by one or more variables and applies a function to calculate summary statistics.
+df$t specifies the variable t that will be aggregated.
+list(df$am) specifies the grouping variable am in the data frame df. The list() function is used to create a list of grouping variables.
+FUN = sum specifies the aggregation function sum to calculate the sum of the t variable within each group.
+By running this code, the result of the aggregation is printed, showing the sum of the t variable for each unique value of the am variable in df.
+
+#### 48. using aggregrate min
+
+```{r}
+head(aggregate(df$t, list(df$am), FUN=min))
+
+```
+aggregate() is a function in R used for data aggregation. It groups data by one or more variables and applies a function to calculate summary statistics.
+df$t specifies the variable t that will be aggregated.
+list(df$am) specifies the grouping variable am in the data frame df. The list() function is used to create a list of grouping variables.
+FUN = min specifies the aggregation function min to calculate the minimum value of the t variable within each group.
+By running this code, the result of the aggregation is printed, showing the minimum value of the t variable for each unique value of the am variable in df.
+
+#### 49. using aggregrate max
+
+```{r}
+head(aggregate(df$t, list(df$am), FUN=max))
+
+```
+The code print(head(aggregate(df$t, list(df$am), FUN = max))) in R uses the aggregate() function to calculate the maximum value of the t variable grouped by the values of the am variable in the data frame df. The head() function is used to display the first few rows of the resulting aggregation.
+
+#### 50. sum of row of lead time matrix across row
+
+```{r}
+matrix <- matrix(head(f1,nrow=11867,ncol=24))
+head(apply( matrix, 1, sum))
+```
+The code creates a matrix named matrix by reshaping the f1 vector into a matrix with 11867 rows and 24 columns. Then, the apply() function is used to calculate the sum along each row of the matrix.
+
+matrix() is a function used to create a matrix in R. In this case, it is used to reshape the f1 vector into a matrix with 11867 rows and 24 columns. The resulting matrix is assigned to the variable matrix.
+
+apply() is a function in R used to apply a function to either the rows or columns of a matrix or data frame. In this case, apply(matrix, 1, sum) calculates the sum along each row of the matrix.
+
+1 in apply(matrix, 1, sum) indicates that the function should be applied to each row of the matrix.
+
+sum is the function specified in apply() to be applied to each row.
+
+By running this code, we will get a vector of the sums of each row in the matrix.
+
+#### 51. sum of row of lead time matrix across column
+```{r}
+head(apply( matrix, 2, sum))
+```
+apply() is a function in R used to apply a function to either the rows or columns of a matrix or data frame.
+
+matrix is the matrix object to which the function will be applied.
+
+2 in apply(matrix, 2, sum) indicates that the function should be applied to each column of the matrix.
+
+sum is the function specified in apply() to be applied to each column.
+
+By running this code, we will get a vector that contains the sums of each column in the matrix.
+#### 52. using sapply to find max in a data frame 
+
+```{r} 
+head(sapply(df, max))
+```
+sapply() is a function in R that applies a function to each element of a list or vector, simplifying the result into a vector or matrix.
+df is the data frame object to which the function will be applied.
+max is the function specified in sapply() to be applied to each column of the data frame.
+By running this code, we will get a vector where each element represents the maximum value of each column in the df data frame.
+
+#### 53. using tapply to find avg amount over all the time ellapse periods
+
+```{r}
+head(tapply(df$am, df$t, mean))
+```
+tapply() is a function in R used to apply a function to subsets of a vector or data frame, grouped by one or more factors.
+
+df$am represents the variable am from the data frame df, which will be aggregated.
+
+df$t represents the grouping variable t from the data frame df.
+
+mean is the function specified in tapply() to calculate the mean for each subset.
+
+By running this code, we will get the mean values of the am variable for each unique value of the t variable in df. 
+The head() function is used to display the first few elements of the resulting aggregation.
+#### 54.Convert Dataframe into matrix
+
+```{r}
+df1 <- data.frame(col1=t,col2=f1,col3=am)
+df2.mat=as.matrix(df1)
+head(df2.mat)
+```
+the code creates a new data frame df1 with columns col1 containing the values from the t vector, col2 containing the values from the f1 vector, and col3 containing the values from the am vector. Then, the as.matrix() function is used to convert df1 into a matrix named df2.mat. Finally, head(df2.mat) is used to print the first few rows of the matrix.
+
+#### 55.Convert Matrix into dataframe
+
+```{r}
+cmat= cbind(am,t)
+mat2frame=as.data.frame(cmat)
+head(mat2frame)
+```
+the code creates a matrix cmat by combining the am and t vectors using the cbind() function. Then, the as.data.frame() function is used to convert the matrix cmat into a data frame named mat2frame. Finally, print(head(mat2frame)) is used to print the first few rows of the data frame.
+
+#### 56. by function to calculate mean amount
+```{r}
+groupby <- by(t,list(am),mean)
+head(groupby)
+```
+here,groupby command groups the values of the t vector by the unique values of the am vector using the by() function. The mean() function is then applied to each group to calculate the mean value. Finally, head(groupby) is used to print the first few groups and their corresponding mean values.
+
+#### 57. dataframe to list
+
+```{r}
+frame.list=as.list(head(df))
+head(frame.list)
+```
+The code, frame.list <- as.list(df) in R converts the data frame df into a list where each element of the list corresponds to a column of the data frame. Then, print(head(frame.list)) is used to print the first few elements of the resulting list.
+
+#### 58. converting data frame to stack
+```{r}
+stackdf <- data.frame(agent=am,lead_time=t)
+stackdf.stack=stack(stackdf)
+head(stackdf.stack)
+
+```
+The code above creates a data frame stackdf with two columns, agent and lead_time, which are assigned the values from the am and t vectors, respectively. Then, the stack() function is used to stack the columns of stackdf into a single column, creating a new data frame named stackdf.stack. Finally, print(head(stackdf.stack)) is used to print the first few rows of the stacked data frame.
+
+#### 59. unstack of a stack
+
+```{r}
+head(unstack(stackdf.stack))
+```
+unstack() is a function in R used to unstack a stacked data frame. It takes a stacked data frame as input and restores the original structure, separating the values into individual columns based on the original column names.
+
+By running this code with stackdf.stack, which is a stacked data frame, we will obtain the unstacked data frame with the original structure, where the values are separated into individual columns based on the original column names(agent,lead_time).
+
+#### 60.listing objects currently in memory
+
+```{r}
+head(ls())
+```
+Running the code head(ls()) in R will display the names of the objects (variables, functions, etc.) that are currently present in the workspace. The ls() function is used to list the names of objects, and head() is used to display the first few names.
+
+#### 61. getting the index after sorting of the first 1000 adr rates
+```{r}
+head(order(am[1:1000]))
+```
+am[1:1000] subsets the am vector to include only the first 1000 elements.
+
+order(am[1:1000]) returns the indices that would sort the subset of am in ascending order.
+
+head(order(am[1:1000])) displays the first few indices resulting from the sorting.
+
+By running this code, we will see the first few indices that would sort the subset of the am vector in ascending order.
+
+#### 62. using rank on the same values to handle tied data values
+```{r}
+head(rank(t[1:1000]))
+```
+t[1:1000] subsets the t vector to include only the first 1000 elements.
+rank(t[1:1000]) calculates the ranks of the subset of t.
+head(rank(t[1:1000])) displays the first few ranks of the subset.
+By running this code, you will see the first few ranks of the subset of the t vector.
+
+#### 63.checking how many people have amount greater than 150
+```{r}
+which(am>9892)
+```
+
+The which() function returns the indices or positions where the given condition am > 9892 is true. It checks each element of the am vector and returns the indices of the elements that satisfy the condition.
+
+By running this code, we will obtain a vector containing the indices of elements in the am vector that are greater than 9892.
+
+#### 64. checking how many while attaching data transiently
+```{r}
+with(df, sum(t))
+```
+with() is a function in R that allows you to evaluate an expression in the context of a data frame. It simplifies the syntax by avoiding repetitive references to the data frame.
+
+df is the data frame.
+
+sum(t) calculates the sum of the values in the column t.
+
+By running this code, we will obtain the sum of the values in the column t of the data frame df.
+
+#### 65. printing the unique id numbers of each booking using row.names
+```{r}
+head(row.names(df))
+
+```
+The row.names() function returns the row names of the data frame df, and the head() function is used to display the first few row names.
+
+By running this code, we will see the first few row names of the data frame df.
+
+#### 66.assigning rownames to a dataframe
+```{r}
+rownamestest <- data.frame(col1=t[1:4],col2=am[1:4])
+rownames(rownamestest) <- c("Person1","Person2","Person3","Person4")
+rownames(rownamestest)
+```
+In the code above, a data frame named rownamestest is created with two columns, col1 and col2, containing the values from subsets of the t and am vectors, respectively. The row names of the rownamestest data frame are then set using the rownames() function, and a character vector c("Person1", "Person2", "Person3", "Person4") is assigned as the row names.
+We will see the assigned row names.
+
+#### 67. changing rownames using letters
+```{r}
+row.names(rownamestest) <- LETTERS[1:4]
+rownames(rownamestest)
+```
+In the code, the row.names() function is used to set the row names of the rownamestest data frame to the first four capital letters of the English alphabet, using the LETTERS constant in R.
+We  will see the updated row names.
+
+#### 68. making a list of total people
+```{r}
+total_time.list=list(t[1:100],am[1:100])
+ print(head(total_time.list))
+```
+In the code, a list named total_time.list is created with two elements. The first element is a subset of the t vector containing the first 100 values, and the second element is a subset of the am vector containing the first 100 values.
+
+We  will see the first few elements of the total_time.list list.The head() function is used to display the first few elements of the list.
+
+#### 69. making a list of total people
+```{r}
+total_am.list=list(am[1:100],t[1:100])
+ head(print(total_am.list))
+
+```
+In the code, a list named total_am.list is created with two elements. The first element is a subset of the am vector containing the first 100 values, and the second element is a subset of the t vector containing the first 100 values.
+We will see the contents of the total_am.list list
+
+
+##### 70. sorting a vector in ascending order
+
+```{r}
+
+head(sort(t))
+
+```
+The code calculates the sum of the elements in the vector t and then sorts the resulting t in ascending order.
+
+The sort() function rearranges the elements of a vector or matrix in ascending or descending order.
+
+#### 71.  sorting a vector in descending order
+
+```{r}
+
+head(sort(t,decreasing = TRUE))
+
+```
+The code is similar to previous one except it sorts the vector in  descending order.
+
+#### 72. finding index of an vector
+
+```{r}
+dataset <- data.frame(col1=t[1:4],col2=am[1:4])
+ordered_dataset <- dataset[order(dataset$col2), ]
+print(ordered_dataset)
+
+```
+The code creates a data frame named dataset with two columns, col1 and col2, and then creates a new data frame ordered_dataset by sorting the rows of dataset based on the values in the col2 column. The final sorted data frame is then printed.
+
+dataset <- data.frame(col1 = t[1:4], col2 = am[1:4]): This line creates a new data frame called dataset with two columns, col1 and col2. The values in col1 are taken from the first four elements of the vector t, while the values in col2 are taken from the first four elements of the vector am.
+
+ordered_dataset <- dataset[order(dataset$col2), ]: This line creates a new data frame called ordered_dataset by sorting the rows of dataset based on the values in the col2 column. The order() function is used to obtain the indices that would sort the col2 column in ascending order. These indices are then used to reorder the rows of dataset.
+
+print(ordered_dataset): This line prints the contents of the ordered_dataset data frame, which now has the rows sorted based on the values in the col2 column.
+
+
+#### 73. sorting with tied values
+
+```{r}
+dataset <- data.frame(col1=t[1:4],col2=am[1:4])
+ordered_dataset <- dataset[rank(dataset$col2), ]
+print(ordered_dataset)
+```
+The code applies group sort and sorts vector with respect to values.
+
+#### 74. returning even indices from a vector
+
+```{r}
+dataset <- data.frame(col1=t[1:4],col2=am[1:4])
+ordered_dataset <- dataset[rank(dataset$col2), ]
+which(ordered_dataset %% 2==0)
+
+```
+The code returns all vectors present at even index, similar to 72nd command.
+
+#### 75. comparing even indices columns
+```{r}
+
+(ordered_dataset %% 2==0)
+
+```
+The code compares aand returns if given index is even or not.
+
+#### 76. comaparing sum values with fixed value
+
+```{r}
+
+sum(t) > 200
+
+```
+The code snippet returns a logical value TRUE if the sum of the elements in t is greater than 200, and FALSE otherwise. It is used to perform a conditional check based on the result of the comparison.
+
+sum(t): This calculates the sum of all the elements in the vector or matrix t
+ '> 200': This is a comparison operator that checks if the sum calculated in the previous step is greater than 200.
+
+#### 77. selecting particular part of a data frame
+
+```{r}
+
+ordered_dataset[3,2]
+
+```
+The ordered_dataset[3, 2] accesses the value in the third row and second column of the ordered_dataset data frame.
+
+ordered_dataset:refers to the data frame created previously, which contains the sorted data.
+
+[3, 2]: This indexing operation is used to extract a specific element from the data frame. The 3 represents the row index, and the 2 represents the column index.
+
+By combining these two components, the code retrieves the value located in the third row and second column of the ordered_dataset data frame.
+
+#### 78. selecting particular part of a data frame
+
+```{r}
+
+ordered_dataset[3,1:2]
+
+```
+[3, 1:2]: This indexing operation is used to extract specific elements from the data frame. The 3 represents the row index, and 1:2 represents the range of column indices.
+ 
+
+#### 79. selecting particular part of a data frame
+
+```{r}
+df1=ordered_dataset
+df1[,1]
+
+```
+The code retrieves the values from the first column of the df1 data frame, which are the same as the values from the first column of the ordered_dataset data frame. It returns a vector of those values.
+ 
+
+#### 80. selecting particular part of a data frame
+
+```{r}
+
+df1[c(1,3,2,4),]
+
+```
+The code returns a new data frame consisting of the selected rows from df1 but retains all columns. The rows are ordered as specified in the indexing operation.
+ 
+
+#### 81. selecting particular part of a data frame
+
+```{r}
+
+df1[c(1,3,2,4),-1]
+
+```
+
+The code returns a new data frame consisting of the selected rows from df1, excluding the first column. The rows are ordered as specified in the indexing operation.
+
+df1: This refers to the data frame df1 created earlier.
+
+[c(1, 3, 2, 4), -1]: This indexing operation is used to select specific rows from df1 based on the indices provided within the c() function. The indices specified are 1, 3, 2, and 4.
+
+The -1 after the comma indicates the exclusion of the first column. By using -1 as the column index, you are excluding the first column from the selected rows.
+
+#### 82. selecting particular part of a data frame
+
+```{r}
+
+df1[c(1,3,2,4),"col2"]
+
+```
+The code returns a vector containing the values from the "col2" column for the selected rows in the specified order.
+ 
+
+#### 83. view a particular column of a data frame
+
+```{r}
+
+df1$col1
+
+```
+The code returns a vector containing the values from the "col1" column of the df1 data frame. Each value in the vector corresponds to a row in the "col1" column.
+df1: This refers to the data frame df1 created earlier.
+
+'$col1': The '$' operator is used to access a specific column in a data frame. In this case, it retrieves the values from the "col1" column of df1.
+
+The code returns a vector containing the values from the "col1" column of the df1 data frame. Each value in the vector corresponds to a row in the "col1" column.
+ 
+
+#### 84. view a particular column of a data frame
+
+```{r}
+
+df1$col1[1:3]
+
+```
+The code returns a vector containing the values from the "col1" column of the df1 data frame, specifically for the first three rows.
+ 
+
+#### 85. adding a new column to data frame
+
+```{r}
+library(dplyr) 
+ ordered_dataset %>% mutate(sum = col1+col2)
+
+```
+The code utilizes the dplyr package to add a new column called "newcol" to the df1 data frame and fills it withsum of col1,col2. 
+ 
+#### 86. removing a column from data frame
+
+```{r}
+library(dplyr) 
+df1 %>% select(-col1)
+
+```
+The code df1 %>% select(col1,col2,V3) uses the %>% operator from the dplyr package to create a new data frame that excludes the these columns from the df1 data frame
+ 
+
+#### 87. renaming a column in data frame
+
+```{r}
+
+demo <- df1 %>%
+
+  rename(gender = col2)
+
+print(head(demo))
+
+```
+The code renames the "col2" column of the df1 data frame to "gender" and assigns the modified data frame to a new variable demo. Then, it prints the first few rows of the demo data frame using the head() function.
+ 
+
+#### 88. reordering columns in data frame
+
+```{r}
+
+df1 %>% select(col2,col1)
+
+```
+
+The code reoerders columns in the data frame
+
+#### 89. getting subset of a data frame
+
+```{r}
+
+df1 %>% filter(col2 == 2.69,col1 == 0)
+
+```
+The code applies filtering operations to the df1 data frame using the %>% operator and the filter() function from the dplyr package.
+
+#### 90.getting subset of a data frame
+
+```{r}
+print(df1)
+df1 %>% filter(col2 == 400.13,col1 <= 1) %>% select(col1,col2)
+
+```
+
+ 
+
+####  91. Editing dataframes by direct assignments
+
+```{r}
+
+df1[1,2]
+
+df1[1,2] = 400.13
+
+df1[1,2]
+
+```
+previously,@df1[1,2] the value was 378.66,after assignment it is changed to "400.13"
+ 
+
+#### 92. Creating a table of vector
+
+```{r}
+head(table(am))
+```
+
+ Creates table of vector
+
+#### 93. adding a new column to a data frame
+Create a new vector for the new column 
+Add the new column to the data frame using cbind
+Print the updated data frame
+```{r}
+new_column <- c("Engineer", "Teacher","scientist","Geologist")
+df1 <- cbind(df1, col4 = new_column)
+print(df1)
+
+```
+#### 94. print command
+
+```{r}
+print(head(df1))
+```
+prints first few rows of data frame df11
+
+#### 95. Generate a random number from ordered_dataset in the range 1-4 from second column
+```{r}
+random_number <- ordered_dataset[1:4, 2]
+head(print(random_number))
+```
+Random number generator
+#### 96. chi square test
+```{r}
+df1.data = table(df1$col2)
+chisq.test(df1.data)
+```
+Performs chi square test on table elements
+#### 97. exponential growth
+```{r}
+df.exp <- exp(df1$col2)
+head(df.exp)
+```
+The code calculates the exponential of the values in the "col2" column of df1 and stores the results in the df.exp variable. It then prints the first few values of df.exp.
+
+The resulting output will be the exponential values of the "col2" column from the df1 data frame.
+#### 98. logrithm
+
+```{r}
+
+df.exp <- log(df1$col2)
+
+head(df.exp)
+
+```
+The code calculates the natural logarithm (base e) of the values in the "col2" column of the df1 data frame and assigns the results to a new variable called df.exp. Then, it prints the first few values of df.exp using the head() function.
+ 
+
+#### 99. scaling a matrix
+
+```{r}
+
+scale(matrix)
+
+```
+The code scales the matrix
+ 
+#### 100. changing row and column values of a matrix
+
+```{r}
+
+print(head(matrix))
+
+mat2 = sweep(x = matrix, MARGIN = 1,STATS = 5, FUN = "+")
+
+print(head(mat2))
+
+```
+The code changes features of rows and columns of given matrix.
