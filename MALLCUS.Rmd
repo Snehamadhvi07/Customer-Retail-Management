@@ -1,0 +1,758 @@
+---
+title: "EDALA"
+author: "Sneha S"
+date: "2023-05-24"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r}
+
+data1 <- read.csv("C:/Users/sneha/OneDrive/Documents/Customer Segmentation.csv")
+
+library(ggplot2)
+
+library(dplyr)
+
+```
+
+ 
+
+## 1)Making a Frequency Polygon
+
+```{r}
+
+ggplot(data1, aes(x=Age)) + geom_freqpoly()
+
+```
+
+ 
+
+The code generates a frequency polygon plot using ggplot2, visualizing the distribution of Beats recorded in Crime dataset. The plot shows the density of beat frequencies along the x-axis, with the shape of the curve indicating the distribution pattern.
+
+ 
+
+ 
+
+## 2)Making a boxplot with mean
+
+```{r}
+
+ggplot(data1, aes(x = factor(Age), y = Gender)) +geom_boxplot()+stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, fill = "orange")
+
+```
+
+ 
+
+ 
+
+The code creates a grouped box plot using ggplot2, comparing the distribution of Beats recorded by Crime dataset in different years. The box plot represents the quartiles, median, and outliers for each year, while the orange points indicate the mean beat count for each year.
+
+ 
+
+ 
+
+## 3)Constructing a Histogram
+
+```{r}
+
+ggplot(data1,aes(x=Gender))+geom_histogram()
+
+```
+
+ 
+
+This command constructs a histogram by taking in the ID variable as input.
+
+ 
+
+## 4)Constructing a Histogram with different properties
+
+```{r}
+
+ggplot(data1,aes(x=Gender))+geom_histogram(fill="white",color="black")
+
+```
+
+ 
+
+This command constructs a histogram by taking in the ID variable as input and changing the color properties of the histogram.
+
+ 
+
+## 5)Constructing a Kernel Density Plot
+
+```{r}
+
+ggplot(data1,aes(x=Age))+geom_density()
+
+```
+
+ 
+
+This command constructs a kernel density plot by taking in the Beat variable as input.
+
+ 
+
+## 6)Constructing a Boxplot
+
+```{r}
+
+ggplot(data1,aes(x=Age))+geom_boxplot()
+
+```
+
+ 
+
+This command constructs a boxplot by taking in the Beat variable as input.
+
+ 
+
+## 7)Constructing a Bar Plot
+
+```{r}
+
+ggplot(data1,aes(y=Gender))+geom_bar()
+
+```
+
+ 
+
+This command constructs a kernel bar plot by taking in the Beat variable as input.
+
+ 
+
+## 8)Constructing a Stair Step Plot
+
+```{r}
+
+ggplot(data1,aes(x=Age,y=Gender))+geom_step()
+
+```
+
+ 
+
+This command constructs a stair step plot by taking in the ID and Beat variables as input.
+
+ 
+
+## 9)Counting the number of observations
+
+```{r}
+
+ggplot(data1,aes(x=Age,y=Gender))+geom_count()
+
+```
+
+ 
+
+This command counts the number of observations.
+
+ 
+
+## 10)Constructing a Crossbar Plot
+
+```{r}
+
+ggplot(data1,aes(x=Age,y=Gender))+geom_area()
+
+```
+
+ 
+
+This command constructs a crossbar plot by taking in the ID and Beat variables as input.
+
+ 
+
+## 11)Constructing a Line Plot
+
+```{r}
+
+ggplot(data1,aes(x=CustomerID,y=Age))+geom_line()
+
+```
+
+ 
+
+This command constructs a line plot by taking in the ID and Beat variables as input.
+
+ 
+
+## 12)Constructing a Blank Plot
+
+```{r}
+
+ggplot(data1,aes(x=CustomerID))+geom_blank()
+
+```
+
+ 
+
+This command constructs a blank plot by taking in the ID variable as input.
+
+ 
+
+## 13)Constructing a Scatter Plot
+
+```{r}
+
+idv = data1[["CustomerID"]]
+
+bv = data1[["Age"]]
+
+plot(x=idv,y=bv)
+
+```
+
+ 
+
+This command constructs a scatter plot by taking in the ID and Beat variables as input.
+
+ 
+
+## 14)Constructing a Bubble Plot
+
+```{r}
+
+ggplot(data1,aes(x=CustomerID,y=Age))+geom_point()
+
+```
+
+ 
+
+This command constructs a bubble plot by taking in the ID and Beat variables as input.
+
+ 
+
+## 15)Constructing a Scatter Plot with fitted values
+
+```{r}
+
+ggplot(data1, aes(x = CustomerID, y = Age)) +
+
+        geom_point() +
+
+        stat_smooth(method = "lm",
+
+        col = "#C42126", se = FALSE, size = 1
+
+)
+
+```
+
+ 
+
+This command constructs a scatter plot with fitted values by taking in the ID and Beat variables as input.
+
+ 
+
+## 16) Making a scatter plot
+
+```{r}
+
+plot(data1$Age,data1$Gender)
+
+```
+
+ 
+
+This command is used to create a scatter plot using District variable as input.
+
+ 
+
+## 17) Making a point plot using above plot
+
+```{r}
+
+ggplot(data1, aes(x=Age, y=Gender))+geom_point()
+
+```
+
+ 
+
+This command creates a point plot using the previous scatter plot.
+
+ 
+
+## 18) Making a point plot using vectors
+
+```{r}
+
+ggplot(data1, aes(x=Age, y=Gender))+geom_point()
+
+```
+
+ 
+
+This command creates a point plot without the use of data frames but using only the vectors.
+
+ 
+
+## 19) Making a line graph
+
+```{r}
+
+plot(data1$Age,data1$Gender,type = "l")
+
+```
+
+ 
+
+This command creates a line graph using Beat and District variables as input.
+
+ 
+
+## 20) Making a line graph with points
+
+```{r}
+
+plot(data1$Age,data1$Gender,type = "l")
+
+points(data1$Age,data1$Gender)
+
+```
+
+ 
+
+This command creates a line graph with points in it.
+
+ 
+
+## 21) Making a scatter plot with colored points
+
+```{r}
+
+plot(data1$Age,data1$Gender/2,col = "red")
+
+points(data1$Age,data1$Gender/2, col = "red")
+
+```
+
+ 
+
+This command creates a scatter plot with colored points.
+
+ 
+
+## 22) Making a line graph with colored points
+
+```{r}
+
+plot(data1$Age,data1$Gender,type = "l", col = "red")
+
+points(data1$Age,data1$Gender, col = "red")
+
+```
+
+ 
+
+This command creates a line graph with colored points.
+
+ 
+
+## 23) Making a line plot
+
+```{r}
+
+ggplot(data1, aes(x=Age, y=Gender))+geom_line()
+
+```
+
+ 
+
+This command creates a line plot.
+
+ 
+
+## 24) Making a bar plot
+
+```{r}
+
+barplot(data1$Age, names.arg = data1$CustomerID)
+
+```
+
+ 
+
+This command creates a bar plot.
+
+ 
+
+## 25) Generating graph of counts
+
+```{r}
+
+barplot(table(data1$Age))
+
+```
+
+ 
+
+This command creates a graph of counts.
+
+ 
+
+## 26) Making a line plot with different color
+
+```{r}
+
+ggplot(data1, aes(x=Age, y=Gender))+geom_line(col = "red")
+
+```
+
+ 
+
+This command creates a line plot with different colors.
+
+ 
+
+## 27) Making a histogram with different wider bins
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram(binwidth = 4)
+
+```
+
+ 
+
+This command creates a histogram with wider bins.
+
+ 
+
+## 28) Specifing amount of bins to display
+
+```{r}
+
+ggplot(data1, aes(x=Gender))+geom_histogram(bins = 10)
+
+```
+
+ 
+
+This command creates a histogram with only a specific number of bins.
+
+ 
+
+## 29) Adding border to histogram
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram(col = "red")
+
+```
+
+ 
+
+This command creates a border for the histogram.
+
+ 
+
+## 30) Changing color of histogram:
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram(fill = "red")
+
+```
+
+ 
+
+This command changes the color of the histogram.
+
+ 
+
+## 31) Making a histogram with a mean line:
+
+```{r}
+
+ggplot(data1, aes(x=Gender))+geom_histogram() +
+
+    geom_vline(aes(xintercept = 10), color = "red", linewidth = 2)
+
+```
+
+ 
+
+This command creates a histogram with a mean line.
+
+ 
+
+## 32) Making a histogram with density curve:
+
+```{r}
+
+ggplot(data1, aes(x=Gender))+geom_histogram() +
+
+    geom_density(color = "green", linewidth = 2)
+
+```
+
+ 
+
+This command creates a histogram along with a density curve.
+
+ 
+
+## 33) Making a histogram with mean line and density curve:
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram() + geom_vline(aes(xintercept = 10), color = "red", linewidth = 2) +
+
+    geom_density(color = "green", linewidth = 2)
+
+```
+
+ 
+
+This command creates a histogram with a mean line and a density curve.
+
+ 
+
+## 34) Aligning boundaries of histogram:
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram(boundary = 1)
+
+```
+
+ 
+
+This command is used to align boundaries of a histogram.
+
+ 
+
+## 35) Adding labels to histogram:
+
+```{r}
+
+ggplot(data1, aes(x=Gender))+geom_histogram()+labs(x="Districts",y="Count")
+
+```
+
+ 
+
+This command is used to add labels to a histogram.
+
+ 
+
+## 36) Adding title to histogram:
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram()+labs(title = "Districts")
+
+```
+
+ 
+
+This command is used to add title to the histogram.
+
+ 
+
+## 37) Adding labels and title to histogram:
+
+```{r}
+
+ggplot(data1, aes(x=CustomerID))+geom_histogram()+labs(x="CustomerID",y="Count",title = "Districts")
+
+```
+
+ 
+
+This command is used to add labels and title to the histogram.
+
+ 
+
+## 38) Setting X axis limits in histogram:
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram()+xlim(0,10)
+
+```
+
+ 
+
+This command is used to set X axis limiter in the histogram.
+
+ 
+
+## 39) Setting Y axis limits in histogram:
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram()+ylim(0,40)
+
+```
+
+ 
+
+This command is used to set Y axis limiter in the histogram.
+
+ 
+
+## 40) Setting X axis and Y axis limits in histogram:
+
+```{r}
+
+ggplot(data1, aes(x=Age))+geom_histogram()+xlim(0,10)+ylim(0,40)
+
+```
+
+ 
+
+This command is used to set X and Y axis limiter in the histogram.
+
+ 
+
+## 41) Creating a line plot with points:
+
+```{r}
+
+ggplot(data1, aes(x=Age,y=Gender))+geom_line()+geom_point()
+
+```
+
+ 
+
+This command creates a line plot with points.
+
+ 
+
+## 42) Creating a dotted line plot:
+
+```{r}
+
+ggplot(data1, aes(x=Age,y=Gender))+geom_line(linetype = "dotted")
+
+```
+
+ 
+
+This command creates a dotted line plot.
+
+ 
+
+## 43) Creating a dotted line plot with points:
+
+```{r}
+
+ggplot(data1, aes(x=Age,y=Gender))+geom_line(linetype = "dotted")+geom_point()
+
+```
+
+ 
+
+This command creates a dotted line plot with points.
+
+ 
+
+## 44) Creating a dotted line plot with colored points:
+
+```{r}
+
+ggplot(data1, aes(x=Gender,y=Age))+geom_line(linetype = "dotted")+geom_point(col ="red")
+
+```
+
+ 
+
+This command creates a dotted line plot with colored points.
+
+ 
+
+## 45) Creating a colored dotted line plot with points:
+
+```{r}
+
+ggplot(data1, aes(x=Gender,y=Age))+geom_line(linetype = "dotted",col = "red")+geom_point()
+
+```
+
+ 
+
+This command creates a colored dotted line with points.
+
+ 
+
+## 46) Increasing line size in line plot:
+
+```{r}
+
+ggplot(data1, aes(x=Gender,y=Age))+geom_line(size=1.5)
+
+```
+
+ 
+
+This command is used to increase the size of line in the line plot.
+
+ 
+
+## 47) Increasing colored line size in line plot:
+
+```{r}
+
+ggplot(data1, aes(x=Gender,y=Age))+geom_line(col = "red",size=1.5)
+
+```
+
+ 
+
+This command is used to increase the size of colored line in the line plot.
+
+ 
+
+## 48) Increasing colored line size in line plot with points:
+
+```{r}
+
+ggplot(data1, aes(x=Gender,y=Age))+geom_line(col ="red",size=1.5)+geom_point()
+
+```
+
+ 
+
+This command is used to increase the size of the colored line with points.
+
+ 
+
+## 49) Increasing dotted line size in line plot:
+
+```{r}
+
+ggplot(data1, aes(x=Age,y=Gender))+geom_line(linetype = "dotted",size=1.5)
+
+```
+
+ 
+
+This command increases the size of the dotted line in the line plot.
+
+ 
+
+## 50) Increasing colored dotted line size in line plot:
+
+```{r}
+
+ggplot(data1, aes(x=CustomerID,y=Age))+geom_line(linetype = "dotted",size=1.5,col = "red")
+
+```
+
+ 
+
+This command is used to increase the size of the colored dotted line in the plot.
+
+ 
+
+## 51) Increasing colored dotted line size in line plot with points:
+
+<!-- ```{r} -->
+
+<!-- ggplot(data,1 aes(x=District,y=Beat))+geom_line(linetype = "dotted",size=1.5,col = "red")+geom_point() -->
+
+<!-- ``` -->
