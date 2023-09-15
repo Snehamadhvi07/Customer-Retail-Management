@@ -10,7 +10,7 @@ R Programming Language: Ensure that you have R installed on your system. You can
 
 # Installation Steps
 Clone the repository:
-git clone https://github.com/your-username/customer-retail-management.git
+git clone https://github.com/Snehamadhvi07/customer-retail-management.git
 
 Change directory to the project folder:
 cd customer-retail-management.
