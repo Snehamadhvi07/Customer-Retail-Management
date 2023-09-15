@@ -30,31 +30,35 @@ Conduct exploratory data analysis to gain insights into your customer and retail
 # 4. Commands and Functions
 The following is a list of commands and functions used in the project, categorized by modules:
 
-Module 1: Data Import
-read_csv(): Import data from a CSV file.
-read_excel(): Import data from an Excel file.
+### Module 1: Data Import
 
-Module 2: Data Cleaning
-filter(): Filter rows based on specified conditions.
-mutate(): Create or modify columns.
-arrange(): Arrange rows based on one or more columns.
-select(): Select specific columns.
+#### read_csv(): Import data from a CSV file.
+#### read_excel(): Import data from an Excel file.
 
-Module 3: Data Transformation
-group_by(): Group data by one or more columns.
-summarize(): Compute summary statistics for groups.
-pivot_longer(): Convert data from wide to long format.
-pivot_wider(): Convert data from long to wide format.
+### Module 2: Data Cleaning
 
-Module 4: Data Visualization
-ggplot(): Create visualizations using the ggplot2 package.
-geom_bar(): Create bar charts.
-geom_histogram(): Create histograms.
-geom_scatterplot(): Create scatter plots.
+#### filter(): Filter rows based on specified conditions.
+#### mutate(): Create or modify columns.
+#### arrange(): Arrange rows based on one or more columns.
+#### select(): Select specific columns.
 
-Module 5: Data Export
-write_csv(): Export data to a CSV file.
-write_excel(): Export data to an Excel file.
+### Module 3: Data Transformation
+
+#### group_by(): Group data by one or more columns.
+#### summarize(): Compute summary statistics for groups.
+#### pivot_longer(): Convert data from wide to long format.
+#### pivot_wider(): Convert data from long to wide format.
+
+### Module 4: Data Visualization
+#### ggplot(): Create visualizations using the ggplot2 package.
+#### geom_bar(): Create bar charts.
+#### geom_histogram(): Create histograms.
+#### geom_scatterplot(): Create scatter plots.
+
+### Module 5: Data Export
+
+#### write_csv(): Export data to a CSV file.
+#### write_excel(): Export data to an Excel file.
 
 # 5. Exploratory Data Analysis
 Exploratory Data Analysis (EDA) is an essential step in understanding your data. In this project, you can use various commands and functions mentioned above to perform EDA tasks such as:
@@ -75,15 +79,15 @@ Make sure to document your EDA process and findings for future reference.
 We welcome contributions to the Customer-Retail Management project. 
 If you have suggestions, bug reports, or want to add new features, please follow these steps:
 
-Fork the repository.
+##### Fork the repository.
 
-Create a new branch for your changes.
+##### Create a new branch for your changes.
 
-Make your changes and commit them.
+##### Make your changes and commit them.
 
-Push your changes to your fork.
+##### Push your changes to your fork.
 
-Create a pull request to merge your changes into the main repository.
+##### Create a pull request to merge your changes into the main repository.
 
 
 Happy data management and analysis with Customer-Retail Management!
